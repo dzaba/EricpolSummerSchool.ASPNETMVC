@@ -12,5 +12,7 @@ namespace PlayoffsCreator.Models
         {
             
         }
+
+        public DbSet<RoundModel> RoundModels { get; set; }
     }
 }

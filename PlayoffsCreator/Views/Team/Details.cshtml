@@ -1,0 +1,22 @@
+﻿@model PlayoffsCreator.Models.TeamModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TeamModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TeamName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TeamName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
