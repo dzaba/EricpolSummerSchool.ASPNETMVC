@@ -7,6 +7,7 @@ namespace PlayoffsCreator.Models
 {
     public class Game
     {
+        public int ID { get; set; }
         public Team Team1 { get; set; }
         public Team Team2 { get; set; }
         public List<Round> Rounds { get; set; }
