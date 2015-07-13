@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -9,5 +10,6 @@ namespace PlayoffsCreator.Models
     {
         public int ID { get; set; }
         public String TeamName { get; set; }
+        public List<PlayerModel> players { get; set; }
     }
 }

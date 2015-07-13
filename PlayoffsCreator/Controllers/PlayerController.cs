@@ -11,22 +11,22 @@ namespace PlayoffsCreator.Controllers
 {
     public class PlayerController : Controller
     {
-        private PlayerModel.PlayerDBContext db = new PlayerModel.PlayerDBContext();
+        private Contexts db = new Contexts();
 
         //
-        // GET: /Players/
+        // GET: /Player/
 
         public ActionResult Index()
         {
-            return View(db.Players.ToList());
+            return View(db.PlayerModels.ToList());
         }
 
         //
-        // GET: /Players/Details/5
+        // GET: /Player/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            PlayerModel playermodel = db.Players.Find(id);
+            PlayerModel playermodel = db.PlayerModels.Find(id);
             if (playermodel == null)
             {
                 return HttpNotFound();
@@ -35,7 +35,7 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // GET: /Players/Create
+        // GET: /Player/Create
 
         public ActionResult Create()
         {
@@ -43,14 +43,14 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // POST: /Players/Create
+        // POST: /Player/Create
 
         [HttpPost]
         public ActionResult Create(PlayerModel playermodel)
         {
             if (ModelState.IsValid)
             {
-                db.Players.Add(playermodel);
+                db.PlayerModels.Add(playermodel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -59,11 +59,11 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // GET: /Players/Edit/5
+        // GET: /Player/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            PlayerModel playermodel = db.Players.Find(id);
+            PlayerModel playermodel = db.PlayerModels.Find(id);
             if (playermodel == null)
             {
                 return HttpNotFound();
@@ -72,7 +72,7 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // POST: /Players/Edit/5
+        // POST: /Player/Edit/5
 
         [HttpPost]
         public ActionResult Edit(PlayerModel playermodel)
@@ -87,11 +87,11 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // GET: /Players/Delete/5
+        // GET: /Player/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            PlayerModel playermodel = db.Players.Find(id);
+            PlayerModel playermodel = db.PlayerModels.Find(id);
             if (playermodel == null)
             {
                 return HttpNotFound();
@@ -100,13 +100,13 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // POST: /Players/Delete/5
+        // POST: /Player/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            PlayerModel playermodel = db.Players.Find(id);
-            db.Players.Remove(playermodel);
+            PlayerModel playermodel = db.PlayerModels.Find(id);
+            db.PlayerModels.Remove(playermodel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

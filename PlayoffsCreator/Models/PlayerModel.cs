@@ -14,9 +14,5 @@ namespace PlayoffsCreator.Models
 
         public string Surname { get; set; }
 
-        public class PlayerDBContext : DbContext
-        {
-            public DbSet<PlayerModel> Players { get; set; }
-        }
     }
 }

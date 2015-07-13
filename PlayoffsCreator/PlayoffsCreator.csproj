@@ -170,7 +170,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507131609526_InitialCreate.cs" />
+    <Compile Include="Migrations\201507131609526_InitialCreate.Designer.cs">
+      <DependentUpon>201507131609526_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Contexts\Contexts.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\RoundModel.cs" />
@@ -178,6 +184,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\PlayoffsCreator.mdf" />
+    <Content Include="App_Data\PlayoffsCreator_log.ldf">
+      <DependentUpon>PlayoffsCreator.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -295,7 +305,9 @@
     <Content Include="Views\Player\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <EmbeddedResource Include="Migrations\201507131609526_InitialCreate.resx">
+      <DependentUpon>201507131609526_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
