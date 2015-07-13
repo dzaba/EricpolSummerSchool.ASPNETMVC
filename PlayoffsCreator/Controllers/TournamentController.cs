@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PlayoffsCreator.Models;
 
 namespace PlayoffsCreator.Controllers
 {
@@ -13,9 +14,10 @@ namespace PlayoffsCreator.Controllers
 
         public ActionResult Index()
         {
+            List<GameModel> games = new List<GameModel>();
 
 
-            return View();
+            return View(games);
         }
 
     }
