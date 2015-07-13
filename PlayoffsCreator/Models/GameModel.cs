@@ -11,6 +11,7 @@ namespace PlayoffsCreator.Models
         public TeamModel Team1 { get; set; }
         public TeamModel Team2 { get; set; }
         public List<RoundModel> Rounds { get; set; }
+        public int TreeLevel { get; set; }
 
         public void PlayGame()
         {
@@ -22,6 +23,19 @@ namespace PlayoffsCreator.Models
 
                 Rounds.Add(round);
             }
+        }
+
+        public IDictionary<int, int> Result()
+        {
+            IDictionary<int, int> result = new Dictionary<int, int>();
+            int score1 = Rounds.Count(o => o.GoalScorer == Team1);
+            result.Add(Team1.ID,score1);
+
+            int score2 = Rounds.Count(o => o.GoalScorer == Team2);
+            result.Add(Team2.ID, score2);
+
+            return result;
+
         }
 
         private bool IsFinished()
