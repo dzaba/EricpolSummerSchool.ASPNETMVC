@@ -9,7 +9,7 @@ namespace PlayoffsCreator.App_Start
 {
     public static class Initialize
     {
-        private static PlayerModel.PlayerDBContext playerDBContext;
+        private static Models.Contexts context;
 
         static public void InitializeInstance()
         {
@@ -21,7 +21,7 @@ namespace PlayoffsCreator.App_Start
                 new PlayerModel() {ID = 3, Name = "Ziemowit", Surname = "Marek"}
             };
 
-            playerDBContext = new PlayerModel.PlayerDBContext();
+            context = new Models.Contexts();
         }
     }
 }
