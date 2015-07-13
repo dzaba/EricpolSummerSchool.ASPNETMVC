@@ -5,15 +5,15 @@ using System.Web;
 
 namespace PlayoffsCreator.Models
 {
-    public class Round
+    public class RoundModel
     {
         public int ID { get; set; }
-        private Team[] teams;
+        private TeamModel[] teams;
 
         public int RoundTime { get; set; }
-        public Team GoalScorer { get; set; }
+        public TeamModel GoalScorer { get; set; }
 
-        public Round(Team[] teams)
+        public RoundModel(TeamModel[] teams)
         {
             this.teams = teams;
         }

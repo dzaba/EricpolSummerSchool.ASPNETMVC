@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PlayoffsCreator.Models
 {
-    public class Team
+    public class TeamModel
     {
         public int ID { get; set; }
         public String TeamName { get; set; }

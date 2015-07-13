@@ -5,18 +5,18 @@ using System.Web;
 
 namespace PlayoffsCreator.Models
 {
-    public class Game
+    public class GameModel
     {
         public int ID { get; set; }
-        public Team Team1 { get; set; }
-        public Team Team2 { get; set; }
-        public List<Round> Rounds { get; set; }
+        public TeamModel Team1 { get; set; }
+        public TeamModel Team2 { get; set; }
+        public List<RoundModel> Rounds { get; set; }
 
         public void PlayGame()
         {
             while (!IsFinished())
             {
-                var round = new Round(new Team[] { Team1, Team2 });
+                var round = new RoundModel(new TeamModel[] { Team1, Team2 });
 
                 round.PlayRound();
 
