@@ -175,7 +175,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Context\GamesDBContext.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\RoundModel.cs" />
