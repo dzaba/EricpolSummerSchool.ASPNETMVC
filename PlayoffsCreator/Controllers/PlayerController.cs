@@ -1,34 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PlayoffsCreator.Models;
-using PlayoffsCreator.BusinessLogic;
 
 namespace PlayoffsCreator.Controllers
 {
     public class PlayerController : Controller
     {
-        public PlayerController()
-        {
-        }
+        private PlayerModel.PlayerDBContext db = new PlayerModel.PlayerDBContext();
+
+        //
+        // GET: /Players/
 
         public ActionResult Index()
         {
-            return View(PlayersList.Players);
+            return View(db.Players.ToList());
         }
 
         //
-        // GET: /Player/Details/5
+        // GET: /Players/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id = 0)
         {
-            return View();
+            PlayerModel playermodel = db.Players.Find(id);
+            if (playermodel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(playermodel);
         }
 
         //
-        // GET: /Player/Create
+        // GET: /Players/Create
 
         public ActionResult Create()
         {
@@ -36,73 +43,78 @@ namespace PlayoffsCreator.Controllers
         }
 
         //
-        // POST: /Player/Create
+        // POST: /Players/Create
 
         [HttpPost]
-        public ActionResult Create(PlayerModel playerModel)
+        public ActionResult Create(PlayerModel playermodel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-                PlayersList.Players.Add(playerModel);
+                db.Players.Add(playermodel);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(playermodel);
         }
 
         //
-        // GET: /Player/Edit/5
+        // GET: /Players/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 0)
         {
-            return View();
+            PlayerModel playermodel = db.Players.Find(id);
+            if (playermodel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(playermodel);
         }
 
         //
-        // POST: /Player/Edit/5
+        // POST: /Players/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PlayerModel playermodel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(playermodel).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(playermodel);
         }
 
         //
-        // GET: /Player/Delete/5
+        // GET: /Players/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 0)
         {
-            return View();
+            PlayerModel playermodel = db.Players.Find(id);
+            if (playermodel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(playermodel);
         }
 
         //
-        // POST: /Player/Delete/5
+        // POST: /Players/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-                PlayersList.Players.RemoveAll(item => item.ID == id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            PlayerModel playermodel = db.Players.Find(id);
+            db.Players.Remove(playermodel);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

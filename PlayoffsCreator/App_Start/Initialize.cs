@@ -7,8 +7,10 @@ using PlayoffsCreator.BusinessLogic;
 
 namespace PlayoffsCreator.App_Start
 {
-    public class Initialize
+    public static class Initialize
     {
+        private static PlayerModel.PlayerDBContext playerDBContext;
+
         static public void InitializeInstance()
         {
             PlayersList.Players = new List<PlayerModel>
@@ -18,6 +20,8 @@ namespace PlayoffsCreator.App_Start
                 new PlayerModel() {ID = 2, Name = "Robert", Surname = "Stolarczyk"},
                 new PlayerModel() {ID = 3, Name = "Ziemowit", Surname = "Marek"}
             };
+
+            playerDBContext = new PlayerModel.PlayerDBContext();
         }
     }
 }
