@@ -11,6 +11,7 @@ namespace PlayoffsCreator.Models
         public TeamModel Team1 { get; set; }
         public TeamModel Team2 { get; set; }
         public List<RoundModel> Rounds { get; set; }
+        public int TreeLevel { get; set; }
 
         public void PlayGame()
         {
