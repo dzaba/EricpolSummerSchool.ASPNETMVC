@@ -24,6 +24,19 @@ namespace PlayoffsCreator.Models
             }
         }
 
+        public IDictionary<int, int> Result()
+        {
+            IDictionary<int, int> result = new Dictionary<int, int>();
+            int score1 = Rounds.Count(o => o.GoalScorer == Team1);
+            result.Add(Team1.ID,score1);
+
+            int score2 = Rounds.Count(o => o.GoalScorer == Team2);
+            result.Add(Team2.ID, score2);
+
+            return result;
+
+        }
+
         private bool IsFinished()
         {
             if ((Rounds.Count(o => o.GoalScorer == Team1) >= 10) || (Rounds.Count(o => o.GoalScorer == Team2) >= 10))
