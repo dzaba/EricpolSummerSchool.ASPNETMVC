@@ -754,3 +754,13 @@ tr.pager td {
             margin: 0;
         }
 }
+
+
+
+/* Tournament tree ---------------------------------------------*/
+.treeNode {
+    border-radius: 25px;
+    border: 2px solid #8AC007;
+    margin: 20px;
+    padding: 20px;
+}

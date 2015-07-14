@@ -314,6 +314,7 @@
     <Content Include="Views\Round\Create.cshtml" />
     <Content Include="Views\Round\Edit.cshtml" />
     <Content Include="Views\Round\Delete.cshtml" />
+    <Content Include="Views\Tournament\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

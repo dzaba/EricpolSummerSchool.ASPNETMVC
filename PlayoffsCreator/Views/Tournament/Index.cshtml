@@ -9,8 +9,26 @@
 <div>
     <h4>TournamentModel</h4>
     <hr />
-    <dl class="dl-horizontal">
-    </dl>
+    <dl class="dl-horizontal"></dl>
 </div>
 
+@for (int i = Model.Max(o => o.TreeLevel); i >= 0; --i)
+{
+    <table style="margin-left: auto; margin-right: auto; margin-bottom: 30px">
+        <tr>
+            @foreach (var game in Model.Where(o => o.TreeLevel == i))
+            {
+                <td>
 
+                    @{string style = game.Rounds == null ? "border-color:Red" : null;}
+
+                    <div class="treeNode" style="@style">
+                        @Html.Raw(game.Team1.TeamName + "\n" +
+                                  ((game.Rounds != null) ? (game.Result().Values.First() + ":" + game.Result().Values.Last()) : ("--:--"))
+                                  + "\n" + game.Team2.TeamName)
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+}
