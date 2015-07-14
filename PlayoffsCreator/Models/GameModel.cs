@@ -38,7 +38,7 @@ namespace PlayoffsCreator.Models
 
         }
 
-        private bool IsFinished()
+        public bool IsFinished()
         {
             if ((Rounds.Count(o => o.GoalScorer == Team1) >= 10) || (Rounds.Count(o => o.GoalScorer == Team2) >= 10))
                 return true;

@@ -30,7 +30,8 @@ namespace PlayoffsCreator.Controllers
             List<GameModel> games = new List<GameModel>()
             {
                 new GameModel() {ID = 1, Team1 = teams[0], Team2 = teams[1], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 1, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()}
+                new GameModel() {ID = 1, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 1, Team1 = teams[4], Team2 = teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()}
             };
             
             foreach (var game in games)
@@ -59,6 +60,27 @@ namespace PlayoffsCreator.Controllers
             for(int i = games.Count+1; i <= gamesNum; ++i)
                 games.Add(new GameModel() { ID = 1, TreeLevel = treeLevels[i], Team1 = new TeamModel() { TeamName = "?" }, Team2 = new TeamModel() { TeamName = "?" } });
 
+            List<List<GameModel>> games2D = new List<List<GameModel>>();
+            for (int i = 1; i <= games.Max(o => o.TreeLevel); ++i)
+            {
+                games2D.Add(new List<GameModel>());
+                foreach (var game in games.Where(o => o.TreeLevel == i))
+                    games2D[i-1].Add(game);
+            }
+            
+            //Ustawia nowe rozgrywki jeżeli poprzednie zostały przeprowadzone.
+            for (int i = 1; i < games2D.Count; ++i)
+                for (int j = 0; j < games2D[i].Count; ++j)
+                    if (games2D[i - 1][j*2].Rounds != null && games2D[i - 1][j * 2 + 1].Rounds != null)
+                        if (games2D[i - 1][j*2].IsFinished() && games2D[i - 1][j*2 + 1].IsFinished())
+                        {
+                            var result = games2D[i - 1][j*2].Result();
+                            games2D[i][j].Team1 = teams.Find( o => o.ID == (result.Values.First() < result.Values.Last()
+                                                                            ? result.Keys.Last() : result.Keys.First()));
+                            result = games2D[i - 1][j*2 + 1].Result();
+                            games2D[i][j].Team2 = teams.Find(o => o.ID == (result.Values.First() < result.Values.Last()
+                                                                            ? result.Keys.Last() : result.Keys.First()));
+                        }
 
             return View(games);
         }
