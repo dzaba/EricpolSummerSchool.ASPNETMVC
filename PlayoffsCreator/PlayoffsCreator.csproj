@@ -167,8 +167,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\TournamentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlayerAPIController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\RoundController.cs" />
+    <Compile Include="Controllers\TeamAPIController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
