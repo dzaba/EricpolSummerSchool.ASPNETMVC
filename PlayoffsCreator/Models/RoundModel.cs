@@ -8,10 +8,15 @@ namespace PlayoffsCreator.Models
     public class RoundModel
     {
         public int ID { get; set; }
-        private TeamModel[] teams;
+        public TeamModel[] teams { get; set; }
 
         public int RoundTime { get; set; }
         public int GoalScorer { get; set; }
+
+        public RoundModel()
+        {
+
+        }
 
         public RoundModel(TeamModel[] teams)
         {

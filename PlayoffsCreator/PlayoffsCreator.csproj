@@ -174,13 +174,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201507131609526_InitialCreate.cs" />
-    <Compile Include="Migrations\201507131609526_InitialCreate.Designer.cs">
-      <DependentUpon>201507131609526_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507151510311_round model added.cs" />
-    <Compile Include="Migrations\201507151510311_round model added.Designer.cs">
-      <DependentUpon>201507151510311_round model added.cs</DependentUpon>
+    <Compile Include="Migrations\201507151624204_Initial.cs" />
+    <Compile Include="Migrations\201507151624204_Initial.Designer.cs">
+      <DependentUpon>201507151624204_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -327,11 +323,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507131609526_InitialCreate.resx">
-      <DependentUpon>201507131609526_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507151510311_round model added.resx">
-      <DependentUpon>201507151510311_round model added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507151624204_Initial.resx">
+      <DependentUpon>201507151624204_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
