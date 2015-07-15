@@ -27,7 +27,7 @@ namespace PlayoffsCreator.Models
         {
             Random rand = new Random();
             RoundTime = rand.Next(1, 5);
-            GoalScorer = teams[rand.Next(0, 1)].ID;
+            GoalScorer = teams[rand.Next(0, 2)].ID;
         }
     }
 }
