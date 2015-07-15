@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201507131609526_InitialCreate.Designer.cs">
       <DependentUpon>201507131609526_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507151510311_round model added.cs" />
+    <Compile Include="Migrations\201507151510311_round model added.Designer.cs">
+      <DependentUpon>201507151510311_round model added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\GameModel.cs" />
@@ -325,6 +329,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507131609526_InitialCreate.resx">
       <DependentUpon>201507131609526_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507151510311_round model added.resx">
+      <DependentUpon>201507151510311_round model added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

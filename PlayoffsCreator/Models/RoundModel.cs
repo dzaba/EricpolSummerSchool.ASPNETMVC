@@ -11,7 +11,7 @@ namespace PlayoffsCreator.Models
         private TeamModel[] teams;
 
         public int RoundTime { get; set; }
-        public TeamModel GoalScorer { get; set; }
+        public int GoalScorer { get; set; }
 
         public RoundModel(TeamModel[] teams)
         {
@@ -22,7 +22,7 @@ namespace PlayoffsCreator.Models
         {
             Random rand = new Random();
             RoundTime = rand.Next(1, 5);
-            GoalScorer = teams[rand.Next(0, 1)];
+            GoalScorer = teams[rand.Next(0, 1)].ID;
         }
     }
 }
