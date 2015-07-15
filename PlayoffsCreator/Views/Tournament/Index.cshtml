@@ -23,7 +23,6 @@
 
                     <div class="treeNode" style="@style">
                         @Html.Raw(game.Team1.TeamName + "\n" + game.Result().Values.First() + ":" + game.Result().Values.Last()  +
-//                            (game.IsFinished() ? (game.Result().Values.First() + ":" + game.Result().Values.Last()) : ("--:--")) +
                             "\n" + game.Team2.TeamName)
                     </div>
                 </td>
@@ -32,10 +31,11 @@
     </table>
 }
 
-<form action="/Tournament/Index/2" method="GET">
+@using (Html.BeginForm("RunSimulation","Tournament",FormMethod.Post))
+{
     <fieldset class="form-horizontal">
         <div class="form-actions no-color">
             <input type="submit" value="Run the simulator" class="btn" />
         </div>
     </fieldset>
-</form>
+}

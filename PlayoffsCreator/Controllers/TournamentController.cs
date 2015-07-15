@@ -9,36 +9,18 @@ namespace PlayoffsCreator.Controllers
 {
     public class TournamentController : Controller
     {
+
         //
         // GET: /Tournament/
 
         public ActionResult Index(int id = 1)
         {
-            // ------ tymczasowe dane do testowania. Finalnie będą pobierane z bazy danych -------
-            List<TeamModel> teams = new List<TeamModel>()
+            if (!DataLoaded)
             {
-                new TeamModel() {ID = 1, TeamName = "Team1"},
-                new TeamModel() {ID = 2, TeamName = "Team2"},
-                new TeamModel() {ID = 3, TeamName = "Team3"},
-                new TeamModel() {ID = 4, TeamName = "Team4"},
-                new TeamModel() {ID = 5, TeamName = "Team5"},
-                new TeamModel() {ID = 6, TeamName = "Team6"},
-                new TeamModel() {ID = 7, TeamName = "Team7"},
-                new TeamModel() {ID = 8, TeamName = "Team8"},
-            };
+                DataLoaded = true;
+                GetData();                
+            }
             int teamsNum = teams.Count;
-            List<GameModel> games = new List<GameModel>()
-            {
-                new GameModel() {ID = 1, Team1 = teams[0], Team2 = teams[1], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 2, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 3, Team1 = teams[4], Team2 = teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 4, Team1 = teams[6], Team2 = teams[7], TreeLevel = 1, Rounds = new List<RoundModel>()}
-            };
-            
-            foreach (var game in games)
-                game.PlayGame();
-            // -----------------------------------------
-
 
             // <numer gry, poziom na drzewie/drabince turnieju>
             IDictionary<int, int> treeLevels = new Dictionary<int, int>(); 
@@ -67,13 +49,7 @@ namespace PlayoffsCreator.Controllers
             for (int i = games.Count + 1; i <= gamesNum; ++i)
                 games.Add(new GameModel() { ID = 1, TreeLevel = treeLevels[i], Team1 = tmpTeam1, Team2 = tmpTeam2, Rounds = new List<RoundModel>() });                
 
-            List<List<GameModel>> gamesTree = new List<List<GameModel>>();
-            for (int i = 1; i <= games.Max(o => o.TreeLevel); ++i)
-            {
-                gamesTree.Add(new List<GameModel>());
-                foreach (var game in games.Where(o => o.TreeLevel == i))
-                    gamesTree[i - 1].Add(game);                    
-            }
+            
             
             //Ustawia nowe rozgrywki jeżeli poprzednie zostały przeprowadzone.
             for (int i = 1; i < gamesTree.Count; ++i)
@@ -93,25 +69,67 @@ namespace PlayoffsCreator.Controllers
                 }
             }
 
-            //Symulator nowej rundy.
-            if (id == 2)
-            {
-                foreach (var gs in gamesTree)
-                {
-                    if (!gs.All(o => o.IsFinished()))
-                    {
-                        foreach (var game in gs)
-                            game.PlayGame();
-                        break;
-                    }
-                }
-            }
             return View(games);
         }
 
-       
+        [HttpPost]
+        public void RunSimulation()
+        {
+            if (!DataLoaded)
+            {
+                DataLoaded = true;
+                GetData();
+            }
+            foreach (var gs in gamesTree)
+            {
+                if (!gs.All(o => o.IsFinished()))
+                {
+                    foreach (var game in gs)
+                        game.PlayGame();
+                    break;
+                }
+            }
+            RedirectToAction("Index");
+        }
 
-        
 
+        private void GetData()
+        {
+            teams = new List<TeamModel>()
+            {
+                new TeamModel() {ID = 1, TeamName = "Team1"},
+                new TeamModel() {ID = 2, TeamName = "Team2"},
+                new TeamModel() {ID = 3, TeamName = "Team3"},
+                new TeamModel() {ID = 4, TeamName = "Team4"},
+                new TeamModel() {ID = 5, TeamName = "Team5"},
+                new TeamModel() {ID = 6, TeamName = "Team6"},
+                new TeamModel() {ID = 7, TeamName = "Team7"},
+                new TeamModel() {ID = 8, TeamName = "Team8"},
+            };
+
+            games = new List<GameModel>()
+            {
+                new GameModel() {ID = 1, Team1 = teams[0], Team2 = teams[1], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 2, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 3, Team1 = teams[4], Team2 = teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 4, Team1 = teams[6], Team2 = teams[7], TreeLevel = 1, Rounds = new List<RoundModel>()}
+            };
+
+            foreach (var game in games)
+                game.PlayGame();
+
+            gamesTree = new List<List<GameModel>>();
+            for (int i = 1; i <= games.Max(o => o.TreeLevel); ++i)
+            {
+                gamesTree.Add(new List<GameModel>());
+                foreach (var game in games.Where(o => o.TreeLevel == i))
+                    gamesTree[i - 1].Add(game);
+            }
+        }
+
+        private bool DataLoaded = false;
+        private List<TeamModel> teams;
+        private List<GameModel> games;
+        private List<List<GameModel>> gamesTree;
     }
 }
