@@ -12,9 +12,9 @@ namespace PlayoffsCreator.Controllers
         //
         // GET: /Tournament/
 
-        public ActionResult Index()
+        public ActionResult Index(int id = 1)
         {
-            // ------ tymczasowe dane do testowania. Finalnie będą pobirane z bazy danych -------
+            // ------ tymczasowe dane do testowania. Finalnie będą pobierane z bazy danych -------
             List<TeamModel> teams = new List<TeamModel>()
             {
                 new TeamModel() {ID = 1, TeamName = "Team1"},
@@ -30,8 +30,9 @@ namespace PlayoffsCreator.Controllers
             List<GameModel> games = new List<GameModel>()
             {
                 new GameModel() {ID = 1, Team1 = teams[0], Team2 = teams[1], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 1, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 1, Team1 = teams[4], Team2 = teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()}
+                new GameModel() {ID = 2, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 3, Team1 = teams[4], Team2 = teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 4, Team1 = teams[6], Team2 = teams[7], TreeLevel = 1, Rounds = new List<RoundModel>()}
             };
             
             foreach (var game in games)
@@ -47,43 +48,70 @@ namespace PlayoffsCreator.Controllers
             for (int i = teamsNum/2; i >= 1; i /= 2)
             {
                 for (int j = 1; j <= i; ++j)
-                    treeLevels.Add(gamesNum+j,treeLevel);
+                    treeLevels.Add(gamesNum + j, treeLevel);                    
                 ++treeLevel;
                 gamesNum += i;
             }
-            //Przypadek gdy jeszcze nie była rozegrana ani jedna gra
+
             if (games.Count < 4)
+            {
                 for (int i = games.Count*2; i < teamsNum; i += 2)
-                    games.Add(new GameModel(){ ID = 1, TreeLevel = 1, Team1 = teams[i], Team2 = teams[i+1]});
-
+                    games.Add(new GameModel() { ID = 1, TreeLevel = 1, Team1 = teams[i], Team2 = teams[i + 1] });                    
+            }
+                
+            
+            TeamModel tmpTeam1 = new TeamModel() { ID = -1, TeamName = "?" };
+            TeamModel tmpTeam2 = new TeamModel() { ID = -2, TeamName = "?" };
+            
             //wypełnienie pustych węzłów drzewa turnieju  
-            for(int i = games.Count+1; i <= gamesNum; ++i)
-                games.Add(new GameModel() { ID = 1, TreeLevel = treeLevels[i], Team1 = new TeamModel() { TeamName = "?" }, Team2 = new TeamModel() { TeamName = "?" } });
+            for (int i = games.Count + 1; i <= gamesNum; ++i)
+                games.Add(new GameModel() { ID = 1, TreeLevel = treeLevels[i], Team1 = tmpTeam1, Team2 = tmpTeam2, Rounds = new List<RoundModel>() });                
 
-            List<List<GameModel>> games2D = new List<List<GameModel>>();
+            List<List<GameModel>> gamesTree = new List<List<GameModel>>();
             for (int i = 1; i <= games.Max(o => o.TreeLevel); ++i)
             {
-                games2D.Add(new List<GameModel>());
+                gamesTree.Add(new List<GameModel>());
                 foreach (var game in games.Where(o => o.TreeLevel == i))
-                    games2D[i-1].Add(game);
+                    gamesTree[i - 1].Add(game);                    
             }
             
             //Ustawia nowe rozgrywki jeżeli poprzednie zostały przeprowadzone.
-            for (int i = 1; i < games2D.Count; ++i)
-                for (int j = 0; j < games2D[i].Count; ++j)
-                    if (games2D[i - 1][j*2].Rounds != null && games2D[i - 1][j * 2 + 1].Rounds != null)
-                        if (games2D[i - 1][j*2].IsFinished() && games2D[i - 1][j*2 + 1].IsFinished())
-                        {
-                            var result = games2D[i - 1][j*2].Result();
-                            games2D[i][j].Team1 = teams.Find( o => o.ID == (result.Values.First() < result.Values.Last()
-                                                                            ? result.Keys.Last() : result.Keys.First()));
-                            result = games2D[i - 1][j*2 + 1].Result();
-                            games2D[i][j].Team2 = teams.Find(o => o.ID == (result.Values.First() < result.Values.Last()
-                                                                            ? result.Keys.Last() : result.Keys.First()));
-                        }
+            for (int i = 1; i < gamesTree.Count; ++i)
+            {
+                for (int j = 0; j < gamesTree[i].Count; ++j)
+                {
+                    if (gamesTree[i - 1][j * 2].IsFinished() && gamesTree[i - 1][j * 2 + 1].IsFinished())
+                    {
+                        var result = gamesTree[i - 1][j * 2].Result();
+                        gamesTree[i][j].Team1 = teams.Find(o => o.ID == 
+                            (result.Values.First() < result.Values.Last() ? result.Keys.Last() : result.Keys.First()));
+                        
+                        result = gamesTree[i - 1][j * 2 + 1].Result();
+                        gamesTree[i][j].Team2 = teams.Find(o => o.ID == 
+                            (result.Values.First() < result.Values.Last() ? result.Keys.Last() : result.Keys.First()));
+                    }
+                }
+            }
 
+            //Symulator nowej rundy.
+            if (id == 2)
+            {
+                foreach (var gs in gamesTree)
+                {
+                    if (!gs.All(o => o.IsFinished()))
+                    {
+                        foreach (var game in gs)
+                            game.PlayGame();
+                        break;
+                    }
+                }
+            }
             return View(games);
         }
+
+       
+
+        
 
     }
 }
