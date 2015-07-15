@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using PlayoffsCreator.Controllers;
 
 namespace PlayoffsCreator
 {
@@ -16,6 +17,17 @@ namespace PlayoffsCreator
 
             );
 
+            config.Routes.MapHttpRoute(
+                name: "PlayerApi",
+                routeTemplate: "PlayerAPI/{id}",
+                defaults: new { controller = "PlayerAPI", id = RouteParameter.Optional }
+            );
+            
+            config.Routes.MapHttpRoute(
+                name: "TeamApi",
+                routeTemplate: "TeamApi/{id}",
+                defaults: new { controller = "TeamApi", id = RouteParameter.Optional }
+            );
             //TODO: cleanup
         }
     }
