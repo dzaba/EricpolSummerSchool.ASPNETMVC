@@ -12,7 +12,7 @@
 <table>
     <tr>
         <th>
-            <b><font color="#8AC007">@Html.DisplayNameFor(model => model.TeamName)</font></b>
+           @Html.DisplayNameFor(model => model.TeamName)
         </th>
         <th></th>
     </tr>
@@ -20,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TeamName)
+            <b><font color="#8AC007"> @Html.DisplayFor(modelItem => item.TeamName)</font></b>
         </td>
         <td>
             @Html.ActionLink("Edytuj", "Edit", new { id=item.ID }) |
