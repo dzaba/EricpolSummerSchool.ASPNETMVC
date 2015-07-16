@@ -11,6 +11,7 @@
     <dl class="dl-horizontal"></dl>
 </div>
 
+
 @for (int i = Model.Max(o => o.TreeLevel); i >= 0; --i)
 {
     <table style="margin-left: auto; margin-right: auto; margin-bottom: 30px">
@@ -31,6 +32,8 @@
     </table>
 }
 
+
+
 @using (Html.BeginForm("RunSimulation","Tournament",FormMethod.Post))
 {
     <fieldset class="form-horizontal">
@@ -39,3 +42,14 @@
         </div>
     </fieldset>
 }
+
+<p align ="right">
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <fieldset class="form-horizontal">
+        <div class="form-actions no-color">
+            <input type="submit" value="Powrót do strony głównej" class="btn" />
+        </div>
+    </fieldset>
+}
+</p>

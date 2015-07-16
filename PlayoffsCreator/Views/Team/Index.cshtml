@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Dodaj drużyny</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Utwórz drużynę", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TeamName)
+            <b><font color="#8AC007">@Html.DisplayNameFor(model => model.TeamName)</font></b>
         </th>
         <th></th>
     </tr>
@@ -23,11 +23,22 @@
             @Html.DisplayFor(modelItem => item.TeamName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
 
 </table>
+
+<p align="right">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <fieldset class="form-horizontal">
+            <div class="form-actions no-color">
+                <input type="submit" value="Powrót do strony głównej" class="btn" />
+            </div>
+        </fieldset>
+    }
+</p>

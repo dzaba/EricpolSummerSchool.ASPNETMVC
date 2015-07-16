@@ -1,5 +1,5 @@
 ﻿html {
-    background-color: #e2e2e2;
+    background-color: #8AC007;
     margin: 0;
     padding: 0;
 }
@@ -90,7 +90,14 @@ h5, h6 {
         text-decoration: none;
     }
 
-
+    span.stretch {
+    display:inline-block;
+    transform:scale(2,1); /* W3C */
+    -webkit-transform:scale(2,1); /* Safari and Chrome */
+    -moz-transform:scale(2,1); /* Firefox */
+    -ms-transform:scale(2,1); /* IE 9 */
+    -o-transform:scale(2,1); /* Opera */
+}
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {

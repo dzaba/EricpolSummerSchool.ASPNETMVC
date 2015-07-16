@@ -4,10 +4,10 @@
     ViewBag.Title = "PlayerView";
 }
 
-<h2>PlayerView</h2>
+<h2>Dodaj graczy</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj gracza", "Create")
 </p>
 <table>
     <tr>
@@ -23,17 +23,29 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            <b><font color="#8AC007">@Html.DisplayFor(modelItem => item.Name)</font></b>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Surname)
+            <b><font color="#8AC007">@Html.DisplayFor(modelItem => item.Surname)</font></b>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
 
 </table>
+
+
+<p align="right">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <fieldset class="form-horizontal">
+            <div class="form-actions no-color">
+                <input type="submit" value="Powrót do strony głównej" class="btn" />
+            </div>
+        </fieldset>
+    }
+</p>
