@@ -9,93 +9,94 @@ namespace PlayoffsCreator.Controllers
 {
     public class TournamentController : Controller
     {
-
+        private Contexts _db = new Contexts();
+        private List<TeamModel> _teams;
+        private List<GameModel> _games;
+        private List<List<GameModel>> _gamesTree;
         //
         // GET: /Tournament/
-
-        public ActionResult Index(int id = 1)
+        public ActionResult Index()
         {
-            if (!DataLoaded)
-            {
-                DataLoaded = true;
-                GetData();                
-            }
-            int teamsNum = teams.Count;
+            GetData();                
 
             // <numer gry, poziom na drzewie/drabince turnieju>
-            IDictionary<int, int> treeLevels = new Dictionary<int, int>(); 
-
-            //Obliczenie liczby rozgrywek w turnieju 
-            int gamesNum = 0, treeLevel  = 1;
-            for (int i = teamsNum/2; i >= 1; i /= 2)
+            IDictionary<int, int> treeLvlForGame = new Dictionary<int, int>(); 
+            int gamesNum = 0;
+            
+            for (int i = _teams.Count/2, lvl = 1; i >= 1; i /= 2, lvl++)
             {
                 for (int j = 1; j <= i; ++j)
-                    treeLevels.Add(gamesNum + j, treeLevel);                    
-                ++treeLevel;
+                    treeLvlForGame.Add(gamesNum + j, lvl);                    
                 gamesNum += i;
             }
 
-            if (games.Count < 4)
+            if (_games.Count < _teams.Count/2)
             {
-                for (int i = games.Count*2; i < teamsNum; i += 2)
-                    games.Add(new GameModel() { ID = 1, TreeLevel = 1, Team1 = teams[i], Team2 = teams[i + 1] });                    
-            }
-                
-            
-            TeamModel tmpTeam1 = new TeamModel() { ID = -1, TeamName = "?" };
-            TeamModel tmpTeam2 = new TeamModel() { ID = -2, TeamName = "?" };
-            
-            //wypełnienie pustych węzłów drzewa turnieju  
-            for (int i = games.Count + 1; i <= gamesNum; ++i)
-                games.Add(new GameModel() { ID = 1, TreeLevel = treeLevels[i], Team1 = tmpTeam1, Team2 = tmpTeam2, Rounds = new List<RoundModel>() });                
-
-            
-            
-            //Ustawia nowe rozgrywki jeżeli poprzednie zostały przeprowadzone.
-            for (int i = 1; i < gamesTree.Count; ++i)
-            {
-                for (int j = 0; j < gamesTree[i].Count; ++j)
-                {
-                    if (gamesTree[i - 1][j * 2].IsFinished() && gamesTree[i - 1][j * 2 + 1].IsFinished())
+                for (int i = _games.Count * 2; i < _teams.Count; i += 2)
+                    _games.Add( new GameModel()
                     {
-                        var result = gamesTree[i - 1][j * 2].Result();
-                        gamesTree[i][j].Team1 = teams.Find(o => o.ID == 
+                        ID = 1, 
+                        TreeLevel = 1, 
+                        Team1 = _teams[i], 
+                        Team2 = _teams[i + 1],
+                        Rounds = new List<RoundModel>()
+                    });                    
+            }
+            //wypełnienie pustych węzłów drzewa turnieju  
+            for (int i = _games.Count + 1; i <= gamesNum; ++i)
+            {
+                _games.Add(new GameModel()
+                {
+                    ID = 1,
+                    TreeLevel = treeLvlForGame[i],
+                    Team1 = new TeamModel() { ID = -1, TeamName = "?" },
+                    Team2 = new TeamModel() { ID = -2, TeamName = "?" },
+                    Rounds = new List<RoundModel>()
+                });  
+            }
+
+            //Dobiera wygrane drużyny i przypisuje je do nowej gry.
+            for (int i = 1; i < _gamesTree.Count; ++i)
+            {
+                for (int j = 0; j < _gamesTree[i].Count; ++j)
+                {
+                    if (_gamesTree[i - 1][j * 2].IsFinished() && _gamesTree[i - 1][j * 2 + 1].IsFinished())
+                    {
+                        IDictionary<int, int> result = _gamesTree[i - 1][j * 2].Result();
+                        _gamesTree[i][j].Team1 = _teams.Find(o => o.ID == 
                             (result.Values.First() < result.Values.Last() ? result.Keys.Last() : result.Keys.First()));
                         
-                        result = gamesTree[i - 1][j * 2 + 1].Result();
-                        gamesTree[i][j].Team2 = teams.Find(o => o.ID == 
+                        result = _gamesTree[i - 1][j * 2 + 1].Result();
+                        _gamesTree[i][j].Team2 = _teams.Find(o => o.ID == 
                             (result.Values.First() < result.Values.Last() ? result.Keys.Last() : result.Keys.First()));
                     }
                 }
             }
-
-            return View(games);
+            return View(_games);
         }
 
         [HttpPost]
-        public void RunSimulation()
+        public ActionResult RunSimulation()
         {
-            if (!DataLoaded)
-            {
-                DataLoaded = true;
-                GetData();
-            }
-            foreach (var gs in gamesTree)
+            GetData();
+            foreach (var gs in _gamesTree)
             {
                 if (!gs.All(o => o.IsFinished()))
                 {
                     foreach (var game in gs)
-                        game.PlayGame();
+                        if(!game.IsFinished())
+                            game.PlayGame();
                     break;
                 }
             }
-            RedirectToAction("Index");
+//            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 
         private void GetData()
         {
-            teams = new List<TeamModel>()
+            _teams = new List<TeamModel>()
             {
                 new TeamModel() {ID = 1, TeamName = "Team1"},
                 new TeamModel() {ID = 2, TeamName = "Team2"},
@@ -107,29 +108,29 @@ namespace PlayoffsCreator.Controllers
                 new TeamModel() {ID = 8, TeamName = "Team8"},
             };
 
-            games = new List<GameModel>()
+            _games = new List<GameModel>()
             {
-                new GameModel() {ID = 1, Team1 = teams[0], Team2 = teams[1], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 2, Team1 = teams[2], Team2 = teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 3, Team1 = teams[4], Team2 = teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()},
-                new GameModel() {ID = 4, Team1 = teams[6], Team2 = teams[7], TreeLevel = 1, Rounds = new List<RoundModel>()}
+                new GameModel() {ID = 1, Team1 = _teams[0], Team2 = _teams[1], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 2, Team1 = _teams[2], Team2 = _teams[3], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 3, Team1 = _teams[4], Team2 = _teams[5], TreeLevel = 1, Rounds = new List<RoundModel>()},
+                new GameModel() {ID = 4, Team1 = _teams[6], Team2 = _teams[7], TreeLevel = 1, Rounds = new List<RoundModel>()}
             };
 
-            foreach (var game in games)
+            foreach (var game in _games)
                 game.PlayGame();
 
-            gamesTree = new List<List<GameModel>>();
-            for (int i = 1; i <= games.Max(o => o.TreeLevel); ++i)
+            _teams = _db.Teams.ToList();
+//            _games = _db.GameModels.ToList();
+
+            _gamesTree = new List<List<GameModel>>();
+            for (int i = 1; i <= _games.Max(o => o.TreeLevel); ++i)
             {
-                gamesTree.Add(new List<GameModel>());
-                foreach (var game in games.Where(o => o.TreeLevel == i))
-                    gamesTree[i - 1].Add(game);
+                _gamesTree.Add(new List<GameModel>());
+                foreach (var game in _games.Where(o => o.TreeLevel == i))
+                    _gamesTree[i - 1].Add(game);
             }
         }
 
-        private bool DataLoaded = false;
-        private List<TeamModel> teams;
-        private List<GameModel> games;
-        private List<List<GameModel>> gamesTree;
+        
     }
 }

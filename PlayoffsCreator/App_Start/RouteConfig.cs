@@ -18,12 +18,6 @@ namespace PlayoffsCreator
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-               name: "Tournament",
-               url: "Tournament/Index/{id}",
-               defaults: new { controller = "Tournament", action = "Index", id = 1 }
-           );
         }
     }
 }

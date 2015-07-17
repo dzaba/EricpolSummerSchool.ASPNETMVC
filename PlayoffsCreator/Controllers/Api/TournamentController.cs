@@ -10,11 +10,21 @@ namespace PlayoffsCreator.Controllers.Api
 {
     public class TournamentController : ApiController
     {
+        private Contexts _db = new Contexts();
+
         [HttpGet]
         public Tournament GetTournament()
         {
-            Tournament tournament = new Tournament() { GamesList = new List<GameModel>()};
-            tournament.GamesList.Add(new GameModel() { ID = 1, TreeLevel = 2 });
+            Tournament tournament = new Tournament()
+            {
+                GamesList = new List<GameModel>()
+//                GamesList = _db.GameModels.ToList();
+            };
+            tournament.GamesList.Add(new GameModel()
+            {
+                ID = 1, 
+                TreeLevel = 2
+            });
             return tournament;
         }
 
