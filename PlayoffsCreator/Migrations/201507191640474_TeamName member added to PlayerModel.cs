@@ -3,7 +3,7 @@ namespace PlayoffsCreator.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class TeamNamememberaddedtoPlayerModel : DbMigration
     {
         public override void Up()
         {
@@ -23,6 +23,7 @@ namespace PlayoffsCreator.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Surname = c.String(),
+                        TeamName = c.String(nullable: false),
                         TeamModel_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)

@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201507151624204_Initial.cs" />
-    <Compile Include="Migrations\201507151624204_Initial.Designer.cs">
-      <DependentUpon>201507151624204_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201507191640474_TeamName member added to PlayerModel.cs" />
+    <Compile Include="Migrations\201507191640474_TeamName member added to PlayerModel.Designer.cs">
+      <DependentUpon>201507191640474_TeamName member added to PlayerModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -328,8 +328,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507151624204_Initial.resx">
-      <DependentUpon>201507151624204_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507191640474_TeamName member added to PlayerModel.resx">
+      <DependentUpon>201507191640474_TeamName member added to PlayerModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -27,7 +27,13 @@
             @Html.EditorFor(model => model.Surname)
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TeamName)   
+        </div>
+        <div class="editor-field"> 
+            @Html.DropDownListFor(model => model.TeamName, (SelectList)@ViewBag.TeamNameList)
+            @Html.ValidationMessageFor(model => model.TeamName)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>

@@ -11,5 +11,10 @@ namespace PlayoffsCreator.Models
         public int ID { get; set; }
         public String TeamName { get; set; }
         public List<PlayerModel> players { get; set; }
+
+        public TeamModel()
+        {
+            players = new List<PlayerModel>(); 
+        }
     }
 }

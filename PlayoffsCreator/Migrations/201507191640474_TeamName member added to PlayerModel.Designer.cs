@@ -5,13 +5,13 @@ namespace PlayoffsCreator.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class TeamNamememberaddedtoPlayerModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TeamNamememberaddedtoPlayerModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201507151624204_Initial"; }
+            get { return "201507191640474_TeamName member added to PlayerModel"; }
         }
         
         string IMigrationMetadata.Source

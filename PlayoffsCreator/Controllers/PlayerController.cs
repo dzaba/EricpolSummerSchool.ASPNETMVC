@@ -12,7 +12,7 @@ namespace PlayoffsCreator.Controllers
     public class PlayerController : Controller
     {
         private Contexts db = new Contexts();
-
+        private string dropdownListDefault = "No team in DB";
         //
         // GET: /Player/
 
@@ -39,6 +39,7 @@ namespace PlayoffsCreator.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.TeamNameList = GetTeamNamesList();
             return View();
         }
 
@@ -48,13 +49,14 @@ namespace PlayoffsCreator.Controllers
         [HttpPost]
         public ActionResult Create(PlayerModel playermodel)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) 
+            { 
                 db.PlayerModels.Add(playermodel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.TeamNameList = GetTeamNamesList();
             return View(playermodel);
         }
 
@@ -115,6 +117,20 @@ namespace PlayoffsCreator.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        private SelectList GetTeamNamesList()
+        {
+            List<string> teamNames = new List<string>();
+            //teamNames.Add("No team selected");
+            if (db.Teams.Count() == 0)
+                teamNames.Add(dropdownListDefault);
+
+            foreach (var team in db.Teams)
+            {
+                teamNames.Add(team.TeamName);
+            }
+            return new SelectList(teamNames.ToArray());
         }
     }
 }
