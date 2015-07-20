@@ -34,9 +34,6 @@ namespace PlayoffsCreator.Controllers
             return View(playermodel);
         }
 
-        //
-        // GET: /Player/Create
-
         public ActionResult Create()
         {
             ViewBag.TeamNameList = GetTeamNamesList();

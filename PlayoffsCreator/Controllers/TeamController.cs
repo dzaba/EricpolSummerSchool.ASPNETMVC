@@ -24,14 +24,24 @@ namespace PlayoffsCreator.Controllers
         //
         // GET: /Team/Details/5
 
+        [HttpGet]
         public ActionResult Details(int id = 0)
         {
-            TeamModel teammodel = db.Teams.Find(id);
-            if (teammodel == null)
+            TeamModel teamModel = db.Teams.Find(id);
+            if (teamModel == null)
             {
                 return HttpNotFound();
             }
-            return View(teammodel);
+            List<PlayerModel> playerList = GetAllPlayersInTeamById(teamModel);
+            ViewBag.TeamName = teamModel.TeamName;
+            return View("../Player/FindAllPlayersByTeamId",playerList);
+        }
+
+        private List<PlayerModel> GetAllPlayersInTeamById(TeamModel teammodel)
+        {
+            return (from player in db.PlayerModels
+                where player.TeamName == teammodel.TeamName
+                select player).ToList();
         }
 
         //

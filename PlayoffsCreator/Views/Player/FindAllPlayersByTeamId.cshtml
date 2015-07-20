@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PlayoffsCreator.Models.PlayerModel>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Wszyscy gracze należacy do drużyny @ViewBag.TeamName</h2>
+
+<fieldset>
+     @{
+         int i;
+         i = 1;
+     }
+    <legend>PlayerModel</legend>
+
+    <table id="players">
+        <tr>
+            <th>#</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@i</td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Surname)</b>
+                </td>
+            </tr>
+            i++;
+        }
+    </table>
+</fieldset>
