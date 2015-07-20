@@ -10,6 +10,8 @@ namespace PlayoffsCreator.Models
 
         public DbSet<RoundModel> RoundModels { get; set; }
 
+        public DbSet<GameModel> GameModels { get; set; }
+
         public Contexts()
         {
 

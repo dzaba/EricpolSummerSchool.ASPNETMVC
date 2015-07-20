@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201507191640474_TeamName member added to PlayerModel.Designer.cs">
       <DependentUpon>201507191640474_TeamName member added to PlayerModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507201447171_dodanie gamecontexstu.cs" />
+    <Compile Include="Migrations\201507201447171_dodanie gamecontexstu.Designer.cs">
+      <DependentUpon>201507201447171_dodanie gamecontexstu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\GameModel.cs" />
@@ -333,6 +337,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507191640474_TeamName member added to PlayerModel.resx">
       <DependentUpon>201507191640474_TeamName member added to PlayerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507201447171_dodanie gamecontexstu.resx">
+      <DependentUpon>201507201447171_dodanie gamecontexstu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
