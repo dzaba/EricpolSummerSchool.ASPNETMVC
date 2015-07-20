@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body role="document">
+    <script src="src/jquery.js"></script>
+    <script src="src/bootstrap.js"></script>
+    <script src="src/knockout-3.3.0.js"></script>
+    <link href="content/bootstrap.css" rel="stylesheet" />
+    <link href="content/bootstrap-theme.css" rel="stylesheet" />
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Knockout</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                Test
+            </div>
+        </div>
+    </nav>
+    <div class="container" role="main">
+        <div class="page-header">Knockout</div>
+        <div>
+            <p>
+                First name: <input data-bind='value: firstName' />
+            </p>
+            <p>
+                Last name: <input data-bind='value: lastName' />
+            </p>
+            <h2>
+                Hello, <span data-bind='text: fullName'> </span>!
+            </h2>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
