@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinPlayoffsSample.Pages.MainMenuPage">
+  <Grid>
+    <Label Text="{Binding WelcomeText}"
+           VerticalOptions="Center"
+           HorizontalOptions="Center" />
+    <Button Text="Idz do storny drugiej"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Command="{Binding GoToTheSecondPageCommand}" />
+  </Grid>
+</ContentPage>
