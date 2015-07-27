@@ -20,18 +20,5 @@ namespace XamarinPlayoffsSample.ViewModels
         {
             this.WelcomeText = "Widok API graczy";
         }
-
-        public ICommand GoToPlayerCommend
-        {
-            get
-            {
-                return new RelayCommand(GoToPlayersApiCommand);
-            }
-        }
-
-        private async void GoToPlayersApiCommand()
-        {
-            await Navigator.NavigateTo(typeof(PlayerApiViewModel));
-        }
     }
 }
