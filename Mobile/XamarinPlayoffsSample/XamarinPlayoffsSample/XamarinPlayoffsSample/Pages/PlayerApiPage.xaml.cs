@@ -9,12 +9,12 @@ using XamarinPlayoffsSample.ViewModels;
 
 namespace XamarinPlayoffsSample.Pages
 {
-    public partial class PlayerApiPage : ContentPage
+    public partial class SecondPage : ContentPage
     {
-        public PlayerApiPage()
+        public SecondPage()
         {
             InitializeComponent();
-            BindingContext = new PlayerApiViewModel();
+            BindingContext = new SecondViewModel();
         }
     }
 }
