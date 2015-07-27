@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="XamarinPlayoffsSample.Pages.TournamentPage">
+	<ContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition
+					Height="Auto" />
+				<RowDefinition
+					Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="*" />
+				<ColumnDefinition
+					Width="*" />
+				<ColumnDefinition
+					Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<Grid
+				Padding="5">
+				<Label
+					Text="Tree Level"
+					Grid.Row="0"
+					Grid.Column="0"
+					FontSize="20"
+					XAlign="Center"
+					YAlign="Center"
+					TextColor="White" />
+			</Grid>
+			<Label
+				Text="{Binding TreeLvl}"
+				Grid.Row="0"
+				Grid.Column="1"
+				FontSize="20"
+				XAlign="Center"
+				YAlign="Center"
+				TextColor="White" />
+			<Stepper
+				Grid.Row="0"
+				Grid.Column="2"
+				Value="{Binding TreeLvl}"
+				Maximum="{Binding MaxTreeLvl}"
+				Minimum="{Binding MinTreeLvl}"
+				Increment="1" />
+			<ListView
+				Grid.Row="1"
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
+				ItemsSource="{Binding Games}">
+
+			</ListView>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>
