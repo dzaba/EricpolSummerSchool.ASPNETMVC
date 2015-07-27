@@ -90,6 +90,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\ball.png" />
     <AndroidResource Include="Resources\values\Style.xml" />
+    <AndroidResource Include="Resources\drawable\pilkarzyki.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
