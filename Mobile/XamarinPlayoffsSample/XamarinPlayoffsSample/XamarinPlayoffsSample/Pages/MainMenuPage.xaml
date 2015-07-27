@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinPlayoffsSample.Pages.MainMenuPage">
-  <Grid>
-    <Label Text="{Binding WelcomeText}"
+    <StackLayout>
+        <Label Text="{Binding WelcomeText}"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
-    <StackLayout>
+
       <Button Text="Idz do storny drugiej"
               VerticalOptions="End"
               HorizontalOptions="Center"
@@ -18,6 +18,10 @@
               Command="{Binding GoToPlayersApiCommand}" 
               BackgroundColor="Lime"
               BorderRadius="2"/>
+
+      <Button Text="Drzewko Turnieju"
+              Command="{Binding GoToTheTournamentCommand}" 
+              HorizontalOptions="Center"
+              BorderRadius="2"/>
     </StackLayout>
-  </Grid>
 </ContentPage>

@@ -18,7 +18,7 @@ namespace XamarinPlayoffsSample.ViewModels
 
         public MainMenuViewModel()
         {
-            this.WelcomeText = "Witaj w mojej pierwszej stronie!";
+            this.WelcomeText = "Witaj w mobilnych piłkarzykach!";
         }
 
         public ICommand GoToTheSecondPageCommand
@@ -46,5 +46,18 @@ namespace XamarinPlayoffsSample.ViewModels
         {
             await Navigator.NavigateTo(typeof(PlayerApiViewModel));
         }
+
+		public ICommand GoToTheTournamentCommand
+		{
+			get
+			{
+				return new RelayCommand(GoToTheTournamentPage);
+			}
+		}
+
+		private async void  GoToTheTournamentPage()
+		{
+			await Navigator.NavigateTo(typeof(TournamentPage));
+		}
     }
 }

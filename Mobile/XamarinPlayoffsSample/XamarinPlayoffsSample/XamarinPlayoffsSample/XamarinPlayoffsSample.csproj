@@ -50,8 +50,11 @@
     <Compile Include="ViewModels\PlayersApiViewModel.cs" />
     <Compile Include="ViewModels\SecondViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
-    <Compile Include="ViewModels\TournamentViewModel.cs" />
     <Compile Include="Utilities\Interfaces\INavigable.cs" />
+    <Compile Include="Pages\TournamentPage.xaml.cs">
+      <DependentUpon>TournamentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TournamentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight">
@@ -78,15 +81,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Pages\TournamentPage.xaml" />
-    <Compile Include="Pages\TournamentPage.xaml.cs">
-      <DependentUpon>TournamentPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MainMenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\TournamentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
