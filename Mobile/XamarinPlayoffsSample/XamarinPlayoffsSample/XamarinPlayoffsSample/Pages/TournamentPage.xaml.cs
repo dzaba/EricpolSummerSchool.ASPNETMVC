@@ -11,10 +11,10 @@ namespace XamarinPlayoffsSample.Pages
 {
 	public partial class TournamentPage : ContentPage
 	{
-		public TournamentPage ()
+		public TournamentPage()
 		{
-			InitializeComponent();
-			BindingContext = new TournamentViewModel ();
+//			InitializeComponent();
+//			BindingContext = new TournamentViewModel ();
 		}
 	}
 }
