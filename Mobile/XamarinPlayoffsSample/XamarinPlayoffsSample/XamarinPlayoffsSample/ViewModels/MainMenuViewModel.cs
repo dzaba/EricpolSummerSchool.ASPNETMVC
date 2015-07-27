@@ -33,5 +33,18 @@ namespace XamarinPlayoffsSample.ViewModels
         {
             await Navigator.NavigateTo(typeof(SecondPage));
         }
+
+        public ICommand GoToPlayerCommend
+        {
+            get
+            {
+                return new RelayCommand(GoToPlayersApiCommand);
+            }
+        }
+
+        private async void GoToPlayersApiCommand()
+        {
+            await Navigator.NavigateTo(typeof(PlayerApiViewModel));
+        }
     }
 }

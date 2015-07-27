@@ -6,9 +6,18 @@
     <Label Text="{Binding WelcomeText}"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
-    <Button Text="Idz do storny drugiej"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            Command="{Binding GoToTheSecondPageCommand}" />
+    <StackLayout>
+      <Button Text="Idz do storny drugiej"
+              VerticalOptions="End"
+              HorizontalOptions="Center"
+              Command="{Binding GoToTheSecondPageCommand}"/> 
+
+      <Button Text="Idz do API graczy"
+              VerticalOptions="End"
+              HorizontalOptions="Center"
+              Command="{Binding GoToPlayersApiCommand}" 
+              BackgroundColor="Lime"
+              BorderRadius="2"/>
+    </StackLayout>
   </Grid>
 </ContentPage>
