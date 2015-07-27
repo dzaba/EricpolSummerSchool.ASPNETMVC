@@ -45,10 +45,13 @@ namespace XamarinPlayoffsSample.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int icon = 2130837504;
+			public const int ball = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int monoandroidsplash = 2130837505;
+			public const int icon = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int monoandroidsplash = 2130837506;
 			
 			static Drawable()
 			{
@@ -64,7 +67,13 @@ namespace XamarinPlayoffsSample.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Mono_Android_Theme_Splash = 2130903040;
+			public const int CustomActionBarTheme = 2130903040;
+			
+			// aapt resource value: 0x7f030002
+			public const int Mono_Android_Theme_Splash = 2130903042;
+			
+			// aapt resource value: 0x7f030001
+			public const int MyActionBar = 2130903041;
 			
 			static Style()
 			{

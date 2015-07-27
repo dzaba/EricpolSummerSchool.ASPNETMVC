@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace XamarinPlayoffsSample.Droid
 {
-    [Activity(Label = "XamarinPlayoffsSample", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "Mobilne Piłkarzyki", Icon = "@drawable/ball", Theme = "@style/CustomActionBarTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)

@@ -14,7 +14,7 @@ namespace XamarinPlayoffsSample.ViewModels
 		private int _minTreeLvl;
 		private int _treeLvl;
 		private List<Game> _games;
-		private ObservableCollection<string> _gamesDetail;
+		private ObservableCollection<Game> _gamesDetail;
 
 		public int MaxTreeLvl 
 		{
@@ -34,11 +34,11 @@ namespace XamarinPlayoffsSample.ViewModels
 			set 
 			{
 				Set(ref _treeLvl, value); 
-				PrepareGameDetailsList ();
+				LoadGamesList ();
 			}
 		}
 
-		public ObservableCollection<string> Games
+		public ObservableCollection<Game> Games
 		{
 			get { return _gamesDetail; }
 			set { Set(ref _gamesDetail, value); }
@@ -46,35 +46,38 @@ namespace XamarinPlayoffsSample.ViewModels
 
 		public TournamentViewModel()
 		{
-			_gamesDetail = new ObservableCollection<string> ();
+			_gamesDetail = new ObservableCollection<Game> ();
 			_games = new List<Game> () 
 			{
-				new Game () { TreeLevel = 1, Result = "Team1 6:4 Team2" },
-				new Game () { TreeLevel = 1, Result = "Team3 7:3 Team4" },
-				new Game () { TreeLevel = 1, Result = "Team5 10:0 Team6" },
-				new Game () { TreeLevel = 1, Result = "Team7 9:1 Team8" },
-				new Game () { TreeLevel = 2, Result = "Team1 8:2 Team3" },
-				new Game () { TreeLevel = 2, Result = "Team5 0:10 Team7" },
-				new Game () { TreeLevel = 3, Result = "Team1 1:9 Team7" },
+				new Game () { TreeLevel = 1, Team1="Team1" ,Result = "6:4", Team2="Team2" },
+				new Game () { TreeLevel = 1, Team1="Team3" ,Result = "3:7", Team2="Team4" },
+				new Game () { TreeLevel = 1, Team1="Team5" ,Result = "9:1", Team2="Team6" },
+				new Game () { TreeLevel = 1, Team1="Team7" ,Result = "1:9", Team2="Team8" },
+				new Game () { TreeLevel = 2, Team1="Team1" ,Result = "6:4", Team2="Team4" },
+				new Game () { TreeLevel = 2, Team1="Team5" ,Result = "2:8", Team2="Team7" },
+				new Game () { TreeLevel = 3, Team1="Team1" ,Result = "0:10", Team2="Team7" },
 			};
 			TreeLvl = 1;
-			MaxTreeLvl = 3;
+			MaxTreeLvl = _games.Max(g => g.TreeLevel);
 			MinTreeLvl = 1;
-			PrepareGameDetailsList ();
+			LoadGamesList ();
 		}
 
-		private void PrepareGameDetailsList()
+		private void LoadGamesList()
 		{
 			Games.Clear();
 			foreach (var game in _games.Where(g => g.TreeLevel == TreeLvl)) 
-				_gamesDetail.Add (game.Result);
+				_gamesDetail.Add(game);
 		}
 	}
 
 	public class Game
 	{
+		public int Id { get; set; }
 		public int TreeLevel { get; set; }
+		public string Team1 { get; set; }
 		public string Result { get; set; }
+		public string Team2 { get; set; }
 	}
 }
 

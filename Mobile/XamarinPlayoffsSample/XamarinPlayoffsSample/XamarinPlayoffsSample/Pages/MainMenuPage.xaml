@@ -1,27 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinPlayoffsSample.Pages.MainMenuPage">
-    <StackLayout>
-        <Label Text="{Binding WelcomeText}"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
-
-      <Button Text="Idz do storny drugiej"
-              VerticalOptions="End"
-              HorizontalOptions="Center"
-              Command="{Binding GoToTheSecondPageCommand}"/> 
-
-      <Button Text="Idz do API graczy"
-              VerticalOptions="End"
-              HorizontalOptions="Center"
-              Command="{Binding GoToPlayersApiCommand}" 
-              BackgroundColor="Lime"
-              BorderRadius="2"/>
-
-      <Button Text="Drzewko Turnieju"
-              Command="{Binding GoToTheTournamentCommand}" 
-              HorizontalOptions="Center"
-              BorderRadius="2"/>
-    </StackLayout>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="XamarinPlayoffsSample.Pages.MainMenuPage">
+	<StackLayout
+		Padding="20, 20, 20, 20">
+		<Label
+			Text="{Binding WelcomeText}"
+			VerticalOptions="Center"
+			FontSize="20"
+			HorizontalOptions="Center" />
+		<Button
+			Text="Idz do storny drugiej"
+			VerticalOptions="End"
+			HorizontalOptions="FillAndExpand"
+			Command="{Binding GoToTheSecondPageCommand}" />
+		<Button
+			Text="Idz do API graczy"
+			VerticalOptions="End"
+			HorizontalOptions="FillAndExpand"
+			Command="{Binding GoToPlayersApiCommand}"
+			BorderRadius="2" />
+		<Button
+			Text="Drzewko Turnieju"
+			Command="{Binding GoToTheTournamentCommand}"
+			HorizontalOptions="FillAndExpand"
+			BorderRadius="2" />
+	</StackLayout>
 </ContentPage>
