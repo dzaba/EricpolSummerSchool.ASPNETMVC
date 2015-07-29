@@ -65,7 +65,7 @@
 										YAlign="Center"/>
 									<Label
 										HorizontalOptions="FillAndExpand"
-										Text="{Binding Team1}"
+										Text="{Binding Team2}"
 										FontSize="15"
 										XAlign="Center"
 										YAlign="Center"/>

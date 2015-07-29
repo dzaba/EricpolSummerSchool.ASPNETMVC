@@ -1,1 +1,16 @@
-﻿<Properties StartupItem="XamarinPlayoffsSample\XamarinPlayoffsSample.Droid\XamarinPlayoffsSample.Droid.csproj" />
+﻿<Properties StartupItem="XamarinPlayoffsSample\XamarinPlayoffsSample.Droid\XamarinPlayoffsSample.Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.7FAD1A6A666DB3297150E4A2A580D7F" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="XamarinPlayoffsSample\XamarinPlayoffsSample\Pages\MainMenuPage.xaml">
+    <Files>
+      <File FileName="XamarinPlayoffsSample\XamarinPlayoffsSample\ViewModels\TournamentViewModel.cs" Line="1" Column="1" />
+      <File FileName="XamarinPlayoffsSample\XamarinPlayoffsSample\Pages\TournamentPage.xaml" Line="1" Column="1" />
+      <File FileName="XamarinPlayoffsSample\XamarinPlayoffsSample\Pages\MainMenuPage.xaml" Line="14" Column="19" />
+      <File FileName="XamarinPlayoffsSample\XamarinPlayoffsSample\ViewModels\MainMenuViewModel.cs" Line="1" Column="1" />
+      <File FileName="XamarinPlayoffsSample\XamarinPlayoffsSample.Droid\Resources\values\Style.xml" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
