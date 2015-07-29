@@ -1,23 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinPlayoffsSample.Pages.MainMenuPage">
-  <Grid>
-    <Label Text="{Binding WelcomeText}"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
-    <StackLayout>
-      <Button Text="Idz do storny drugiej"
-              VerticalOptions="End"
-              HorizontalOptions="Center"
-              Command="{Binding GoToTheSecondPageCommand}"/> 
-
-      <Button Text="Idz do API graczy"
-              VerticalOptions="End"
-              HorizontalOptions="Center"
-              Command="{Binding GoToPlayersApiCommand}" 
-              BackgroundColor="Lime"
-              BorderRadius="2"/>
-    </StackLayout>
-  </Grid>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="XamarinPlayoffsSample.Pages.MainMenuPage">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="Auto" />
+			<RowDefinition
+				Height="*" />
+		</Grid.RowDefinitions>
+		<Grid
+			Padding="5,20,5,20">
+			<Label
+				Text="{Binding WelcomeText}"
+				VerticalOptions="Center"
+				FontSize="20"
+				Grid.Row="0"
+				HorizontalOptions="Center" />
+		</Grid>
+		<StackLayout
+			Padding="20, 0, 20, 0"
+			Grid.Row="1">
+			<Button
+				Text="Idz do storny drugiej"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="#AA7ACC29"
+				Command="{Binding GoToTheSecondPageCommand}" />
+			<Button
+				Text="Idz do API graczy"
+				VerticalOptions="End"
+				HorizontalOptions="FillAndExpand"
+				Command="{Binding GoToPlayersApiCommand}"
+				BackgroundColor="#AA7ACC29"/>
+			<Button
+				Text="Drzewko Turnieju"
+				Command="{Binding GoToTheTournamentCommand}"
+				HorizontalOptions="FillAndExpand"
+				BackgroundColor="#AA7ACC29" />
+		</StackLayout>
+	</Grid>
 </ContentPage>
