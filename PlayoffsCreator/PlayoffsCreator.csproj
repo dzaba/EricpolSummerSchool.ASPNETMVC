@@ -20,6 +20,13 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -162,6 +169,10 @@
     <Compile Include="App_Start\Initialize.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BL\GameGenerator.cs" />
+    <Compile Include="BL\IGameGenerator.cs" />
+    <Compile Include="BL\ITreeDecorator.cs" />
+    <Compile Include="BL\TreeDecorator.cs" />
     <Compile Include="BusinessLogic\PlayersList.cs" />
     <Compile Include="Contexts\Contexts.cs" />
     <Compile Include="Controllers\AccountController.cs" />
